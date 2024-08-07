@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="auth">
+        <h1>Login/Register</h1>
+        <form id="auth-form">
+            <input type="text" id="username" placeholder="Username" required>
+            <input type="password" id="password" placeholder="Password" required>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+    <div id="weather" style="display:none;">
+        <h1>Weather Dashboard</h1>
+        <div id="weather-info">
+            <h2>Current Weather</h2>
+            <p id="current-weather">Loading...</p>
+            <h2>7-Day Forecast</h2>
+            <div id="forecast">Loading...</div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
