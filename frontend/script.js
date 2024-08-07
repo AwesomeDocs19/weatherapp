@@ -21,10 +21,23 @@ document.getElementById('auth-form').addEventListener('submit', async (e) => {
 
 async function loadWeatherData() {
     const token = localStorage.getItem('token');
-    const userId = parseJwt(token).id; // Assumes parseJwt is a function to decode JWT
+    const userId = parseJwt(token).id;
     const response = await fetch(`http://localhost:3000/api/preferences/${userId}`);
     const preferences = await response.json();
-    // Fetch and display weather data based on preferences
+
+    const apiKey = 'YOUR_API_KEY';
+    for (const pref of preferences) {
+        const location = encodeURIComponent(pref.location);
+        const weatherResponse = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${location}&units=metric&appid=${apiKey}`);
+        const weatherData = await weatherResponse.json();
+        updateCurrentWeather(weatherData);
+        // Add code to handle forecast data if needed (later)
+    }
+}
+
+function updateCurrentWeather(data) {
+    const weatherText = `Temperature: ${data.main.temp}°C\nWeather: ${data.weather[0].description}`;
+    document.getElementById('current-weather').textContent = weatherText;
 }
 
 function parseJwt(token) {
